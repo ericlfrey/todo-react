@@ -20,4 +20,44 @@ const getTodos = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default getTodos;
+const postTodo = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/todos.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const updateTodo = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/todos/${payload.firebaseKey}.json`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+const deleteTodo = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/todos/${firebaseKey}.json`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+export {
+  getTodos, deleteTodo, postTodo, updateTodo,
+};
