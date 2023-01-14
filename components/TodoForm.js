@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
+import { postTodo, updateTodo } from '../api/data';
 
 const initialShape = {
   title: '',
@@ -14,6 +16,7 @@ const initialShape = {
 export default function TodoForm({ obj }) {
   const [formInput, setFormInput] = useState(initialShape);
   const { user } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     if (obj.firebaseKey) setFormInput(obj);
@@ -28,7 +31,13 @@ export default function TodoForm({ obj }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.warn('Form Submitted');
+    const payload = { ...formInput, uid: user.uid };
+    postTodo(payload).then(({ name }) => {
+      const patchPayload = { firebaseKey: name };
+      updateTodo(patchPayload).then(() => {
+        router.push('/todos');
+      });
+    });
   };
   return (
     <Form onSubmit={handleSubmit}>
@@ -50,7 +59,7 @@ export default function TodoForm({ obj }) {
           as="textarea"
           rows={3}
           placeholder="Enter Decription"
-          name="last_name"
+          name="description"
           value={formInput.description}
           onChange={handleChange}
           required
