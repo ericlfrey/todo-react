@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import getTodos from '../../api/data';
+import { getTodos } from '../../api/data';
 import Todo from '../../components/Todo';
 
 export default function TodosPage() {

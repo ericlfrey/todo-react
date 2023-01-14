@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { deleteTodo } from '../api/data';
 
 export default function Todo({ todo, onUpdate }) {
   const handleDelete = (e) => {
     e.preventDefault();
-    console.warn(todo.firebaseKey);
-    onUpdate();
+    deleteTodo(todo.firebaseKey).then(() => onUpdate());
   };
 
   return (
