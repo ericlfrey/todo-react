@@ -20,6 +20,18 @@ const getTodos = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleTodo = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/todos/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const postTodo = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/todos.json`, {
     method: 'POST',
@@ -59,5 +71,5 @@ const deleteTodo = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 export {
-  getTodos, deleteTodo, postTodo, updateTodo,
+  getTodos, deleteTodo, postTodo, updateTodo, getSingleTodo,
 };

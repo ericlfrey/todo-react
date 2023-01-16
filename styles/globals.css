@@ -18,5 +18,14 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color: #00c1be;
+}
+
+.card-test-body {
+  width: 100vw;
+  height: 200px;
+  background-color: bisque;
+  border-radius: 7px;
+  border: solid 1px #333;
+  box-shadow: 3px 3px #777;
 }

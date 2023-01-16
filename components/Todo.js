@@ -11,8 +11,8 @@ export default function Todo({ todo, onUpdate }) {
 
   return (
     <div>
-      <Card style={{ width: '18rem' }}>
-        <Card.Body>
+      <Card className="mb-3 ms-3" style={{ width: '18rem', height: '200px' }}>
+        <Card.Body className="card-body">
           <Card.Title>{todo.title}</Card.Title>
           {todo.complete
             ? <Card.Subtitle className="mb-2 text-muted">Completed</Card.Subtitle>
@@ -23,8 +23,10 @@ export default function Todo({ todo, onUpdate }) {
           <Card.Text>
             {todo.description}
           </Card.Text>
-          <Card.Link href="#">Edit</Card.Link>
-          <Card.Link href="#" onClick={handleDelete}>Delete</Card.Link>
+          <div>
+            <Card.Link href={`/todos/edit/${todo.firebaseKey}`}>Edit</Card.Link>
+            <Card.Link href="#" onClick={handleDelete}>Delete</Card.Link>
+          </div>
         </Card.Body>
       </Card>
     </div>

@@ -16,9 +16,11 @@ export default function TodosPage() {
   return (
     <div>
       <h1>TODOS PAGE</h1>
-      {todos.map((todo) => (
-        <Todo key={todo.firebaseKey} todo={todo} onUpdate={getAllTodos} />
-      ))}
+      <div className="d-flex flex-wrap">
+        {todos.map((todo) => (
+          <Todo key={todo.firebaseKey} todo={todo} onUpdate={getAllTodos} />
+        ))}
+      </div>
     </div>
   );
 }
