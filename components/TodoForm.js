@@ -34,7 +34,7 @@ export default function TodoForm({ obj }) {
     if (obj.firebaseKey) {
       updateTodo(formInput).then(() => router.push('/todos'));
     } else {
-      const payload = { ...formInput, uid: user.uid };
+      const payload = { ...formInput, uid: user.uid, dateAdded: Date() };
       postTodo(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateTodo(patchPayload).then(() => {
@@ -69,6 +69,14 @@ export default function TodoForm({ obj }) {
           required
         />
       </FloatingLabel>
+      {/* <input
+        type="date"
+        name="meeting-time"
+        value={date}
+        // min="2018-06-07T00:00"
+        // max="2018-06-14T00:00"
+        onChange={handleChange}
+      /> */}
       {/* COMPLETE  */}
       <Form.Check
         className="text-white mb-3"

@@ -1,4 +1,4 @@
-import CardTest from '../components/CardTest';
+// import CardTest from '../components/CardTest';
 import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -6,7 +6,6 @@ function Home() {
   return (
     <div>
       <h1>Hello {user.displayName}! </h1>
-      <CardTest />
     </div>
   );
 }
