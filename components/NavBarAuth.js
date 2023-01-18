@@ -22,6 +22,9 @@ export default function NavBar() {
             <Link passHref href="/todos/new">
               <Nav.Link>Add Todo</Nav.Link>
             </Link>
+            <Link passHref href="/todos/table">
+              <Nav.Link>Table</Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
